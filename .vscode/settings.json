@@ -1,0 +1,10 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "search.exclude": {
+        ".next": true,
+        "buid": true,
+        "dist": true,
+        "src/.next": true
+    }
+}

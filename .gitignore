@@ -1,0 +1,8 @@
+.next
+build
+coverage
+node_modules
+dist
+src/.next
+src/buid
+src/dist
