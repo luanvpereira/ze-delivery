@@ -4,16 +4,16 @@ import Head from 'next/head';
 import AddressContainer from '../../components/address-container';
 
 class Home extends React.PureComponent {
-    render() {
-        return (
-            <>
-                <Head>
-                    <title>Home</title>
-                </Head>
-                <AddressContainer />
-            </>
-        );
-    }
+	render() {
+		return (
+			<>
+				<Head>
+					<title>Home</title>
+				</Head>
+				<AddressContainer />
+			</>
+		);
+	}
 }
 
 export default Home;

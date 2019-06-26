@@ -3,3 +3,5 @@ test-utils
 node_modules
 __mocks__
 server/www.js
+jest.config.js
+next.config.js
