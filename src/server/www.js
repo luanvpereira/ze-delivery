@@ -10,7 +10,8 @@ const srcDir = path.resolve(process.cwd(), './src');
 
 const nextApp = next({
 	dev,
-	dir: srcDir
+	dir: srcDir,
+	distDir: srcDir
 });
 
 const handleNextRequests = nextApp.getRequestHandler();
