@@ -8,5 +8,5 @@ export const initializeStore = (initialState = {}) =>
 	createStore(
 		combineReducers({}),
 		initialState,
-		composeWithDevTools(applyMiddleware(...middlewares())),
+		composeWithDevTools(applyMiddleware(...middlewares()))
 	);
