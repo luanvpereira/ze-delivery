@@ -6,27 +6,29 @@ import { Provider } from 'react-redux';
 import { initializeStore } from '../reducer';
 
 class MyApp extends App {
-    static async getInitialProps({ Component, ctx }) {
-        let pageProps = {};
+	static async getInitialProps({ Component, ctx }) {
+		let pageProps = {};
 
-        if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx);
-        }
+		if (Component.getInitialProps) {
+			pageProps = await Component.getInitialProps(ctx);
+		}
 
-        return { pageProps };
-    }
+		console.log("luan");
 
-    render() {
-        const { Component, pageProps, store } = this.props;
+		return { pageProps };
+	}
 
-        return (
-            <Container>
-                <Provider store={store}>
-                    <Component {...pageProps} />
-                </Provider>
-            </Container>
-        );
-    }
+	render() {
+		const { Component, pageProps, store } = this.props;
+
+		return (
+			<Container>
+				<Provider store={store}>
+					<Component {...pageProps} />
+				</Provider>
+			</Container>
+		);
+	}
 }
 
 export default withRedux(initializeStore)(MyApp);
