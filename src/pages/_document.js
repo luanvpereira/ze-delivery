@@ -11,7 +11,10 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
-					<style>{`body {margin: 0}`}</style>
+					<link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+					/>
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
 				<body>
