@@ -6,25 +6,27 @@ const path = require('path');
 const dev = process.env.NODE_ENV !== 'production';
 const port = 3000;
 
+const srcDir = path.resolve(process.cwd(), './src');
+
 const nextApp = next({
-    dev,
-    dir: path.join(__dirname, '../src')
+	dev,
+	dir: srcDir
 });
 
 const handleNextRequests = nextApp.getRequestHandler();
 
 express.get('*', (req, res) => {
-    handleNextRequests(req, res)
+	handleNextRequests(req, res);
 });
 
 nextApp.prepare().then(() => {
-    const httpServer = http.createServer(express);
+	const httpServer = http.createServer(express);
 
-    httpServer.listen(port, err => {
-        if (err) {
-            throw err;
-        }
+	httpServer.listen(port, err => {
+		if (err) {
+			throw err;
+		}
 
-        console.info(`> Ready on http://localhost:${port}`);
-    });
+		console.info(`> Ready on http://localhost:${port}`);
+	});
 });
