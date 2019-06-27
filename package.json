@@ -3,12 +3,12 @@
 	"version": "0.0.0",
 	"description": "",
 	"scripts": {
-		"test": "jest",
+		"test": "jest -- --findRelatedTests",
 		"dev": "NODE_ENV=development node ./src/server/www.js",
 		"prebuild": "rm -rf ./src/.next ./src/build",
 		"build": "next build",
 		"start": "NODE_ENV=production node ./src/server/www.js next start",
-		"lint": "eslint **/*.{js,jsx}"
+		"lint": "eslint **/*.{js,jsx} --fix"
 	},
 	"keywords": [],
 	"author": "",
@@ -35,13 +35,14 @@
 		"redux-thunk": "^2.3.0"
 	},
 	"devDependencies": {
+		"babel-eslint": "^10.0.2",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.14.0",
 		"eslint": "^5.3.0",
-		"eslint-config-airbnb": "^17.1.0",
 		"eslint-config-prettier": "^6.0.0",
+		"eslint-plugin-babel": "^5.3.0",
 		"eslint-plugin-import": "^2.18.0",
-		"eslint-plugin-jsx-a11y": "^6.2.1",
+		"eslint-plugin-jsx-max-len": "^1.0.0",
 		"eslint-plugin-prettier": "^3.1.0",
 		"eslint-plugin-react": "^7.14.2",
 		"husky": "^2.5.0",
