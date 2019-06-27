@@ -1,7 +1,7 @@
 import wait from '../wait';
 
 describe('wait', () => {
-	it('should call a promise callback only once when trying to dispatch several times', async () => {
+	it('should wait only once when trying to wait several times', async () => {
 		jest.useFakeTimers();
 
 		const dispatch = jest.fn();
