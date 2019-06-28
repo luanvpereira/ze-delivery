@@ -6,7 +6,7 @@ module.exports = {
 		'\\.(s?css)$': 'identity-obj-proxy'
 	},
 	setupFiles: ['./test-utils/enzyme-setup.js'],
-	coveragePathIgnorePatterns: ['src/types', 'test-utils', 'src/pages', 'src/constants'],
+	coveragePathIgnorePatterns: ['src/types', 'test-utils', 'src/pages', 'src/constants', 'src/reducer/index.js'],
 	snapshotSerializers: ["enzyme-to-json/serializer"],
 	collectCoverage: true,
 	coverageThreshold: {
