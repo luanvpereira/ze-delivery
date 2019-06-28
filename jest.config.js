@@ -7,6 +7,7 @@ module.exports = {
 	},
 	setupFiles: ['./test-utils/enzyme-setup.js'],
 	coveragePathIgnorePatterns: ['src/types', 'test-utils', 'src/pages', 'src/constants'],
+	snapshotSerializers: ["enzyme-to-json/serializer"],
 	collectCoverage: true,
 	coverageThreshold: {
 		global: {
