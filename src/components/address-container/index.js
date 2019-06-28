@@ -10,8 +10,7 @@ const MIN_LENGTH = 3;
 class AddressContainer extends React.PureComponent {
 	static propTypes = {
 		setCurrentAddress: PropTypes.func.isRequired,
-		getAddressess: PropTypes.func.isRequired,
-		clearCurrentAddress: PropTypes.func.isRequired
+		getAddressess: PropTypes.func.isRequired
 	};
 
 	constructor(props) {
