@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddressContainer/> #render should render an <AddressContainer/> 1`] = `
+<Fragment>
+  <input
+    onChange={[Function]}
+    type="text"
+  />
+  <ul>
+    <li
+      key="ChIJn826YLJezpQRDhdmNWzKsdw"
+      onClick={[Function]}
+    >
+      R. Cuiabá - Alto da Mooca, São Paulo - SP, Brazil
+    </li>
+    <li
+      key="ChIJF9lBHVcFbJIRt9jT0OF5WWs"
+      onClick={[Function]}
+    >
+      R. Cuiabá - Nossa Sra. das Gracas, Manaus - AM, 69053-120, Brazil
+    </li>
+  </ul>
+</Fragment>
+`;

@@ -32,19 +32,22 @@ class AddressContainer extends React.PureComponent {
 			await wait('TYPING', 600);
 			this.isTyping = true;
 
-			try {
-				const addressess = await this.props.getAddressess(target.value);
+			const addressess = await this.props.getAddressess(target.value);
 
-				this.setState({
-					addressess
-				});
-			} catch (e) {
-				this.resetAddressess();
-			}
+			this.setState({
+				addressess
+			});
+
+			this.isTyping = false;
 		} else {
-			this.props.clearCurrentAddress();
 			this.resetAddressess();
 		}
+	}
+
+	handleClick(index) {
+		return () => {
+			this.props.setCurrentAddress(this.state.addressess[index]);
+		};
 	}
 
 	resetAddressess() {
@@ -52,12 +55,6 @@ class AddressContainer extends React.PureComponent {
 			addressess: []
 		});
 		this.isTyping = false;
-	}
-
-	handleClick(index) {
-		return () => {
-			this.props.setCurrentAddress(this.state.addressess[index]);
-		};
 	}
 
 	render() {
@@ -80,7 +77,9 @@ class AddressContainer extends React.PureComponent {
 	}
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...addressActions }, dispatch);
+export { AddressContainer as PureAddressContainer };
+
+export const mapDispatchToProps = dispatch => bindActionCreators({ ...addressActions }, dispatch);
 
 export default connect(
 	undefined,

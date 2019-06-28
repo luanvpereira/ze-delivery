@@ -6,7 +6,7 @@ import address from './address';
 
 export const middlewares = () => [ thunk ];
 
-export const initializeStore = (initialState = {}) =>
+export const initializeStore = initialState =>
 	createStore(
 		combineReducers({
 			address
