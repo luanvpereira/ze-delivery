@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"description": "",
 	"scripts": {
-		"test": "jest",
+		"test": "jest --silent --findRelatedTests --coverage",
 		"dev": "NODE_ENV=development node ./src/server/www.js",
 		"prebuild": "rm -rf ./src/.next ./src/build",
 		"build": "next build",
