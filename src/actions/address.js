@@ -7,20 +7,13 @@ export const setCurrentAddress = ({
 	formatted_address: formattedAddress,
 	geometry: { location },
 	place_id: placeId
-}) => dispatch => {
-	dispatch({
-		type: CHANGE_CURRENT_ADDRESS,
-		payload: {
-			formattedAddress,
-			location,
-			placeId
-		}
-	});
-};
-
-export const clearCurrentAddress = () => ({
+}) => ({
 	type: CHANGE_CURRENT_ADDRESS,
-	payload: null
+	payload: {
+		formattedAddress,
+		location,
+		placeId
+	}
 });
 
 export const getAddressess = address => async () => {
