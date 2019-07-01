@@ -1,7 +1,9 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import withRedux from 'next-redux-wrapper';
+import withApolloClient from '../hoc/with-apollo-client';
 import { Provider } from 'react-redux';
+import { ApolloProvider, compose } from 'react-apollo';
 
 import { initializeStore } from '../reducer';
 
@@ -17,16 +19,21 @@ class MyApp extends App {
 	}
 
 	render() {
-		const { Component, pageProps, store } = this.props;
+		const { Component, pageProps, store, apolloClient } = this.props;
 
 		return (
 			<Container>
-				<Provider store={store}>
-					<Component {...pageProps} />
-				</Provider>
+				<ApolloProvider client={apolloClient}>
+					<Provider store={store}>
+						<Component {...pageProps} />
+					</Provider>
+				</ApolloProvider>
 			</Container>
 		);
 	}
 }
 
-export default withRedux(initializeStore)(MyApp);
+export default compose(
+	withApolloClient,
+	withRedux(initializeStore),
+)(MyApp);
