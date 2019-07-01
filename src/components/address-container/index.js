@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
+import Router from 'next/router'
 
 import * as addressActions from '../../actions/address';
 import wait from '../../lib/wait';
@@ -46,6 +47,7 @@ class AddressContainer extends React.PureComponent {
 	handleClick(index) {
 		return () => {
 			this.props.setCurrentAddress(this.state.addressess[index]);
+			Router.push('/products');
 		};
 	}
 
@@ -80,7 +82,9 @@ export { AddressContainer as PureAddressContainer };
 
 export const mapDispatchToProps = dispatch => bindActionCreators({ ...addressActions }, dispatch);
 
-export default connect(
-	undefined,
-	mapDispatchToProps
+export default compose(
+	connect(
+		undefined,
+		mapDispatchToProps
+	)
 )(AddressContainer);

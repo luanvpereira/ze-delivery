@@ -4,16 +4,10 @@ import { CHANGE_CURRENT_ADDRESS } from '../types';
 import { GEOCODE_URL, GOOGLE_CREDENTIAL } from '../constants';
 
 export const setCurrentAddress = ({
-	formatted_address: formattedAddress,
-	geometry: { location },
-	place_id: placeId
+	geometry: { location: payload }
 }) => ({
 	type: CHANGE_CURRENT_ADDRESS,
-	payload: {
-		formattedAddress,
-		location,
-		placeId
-	}
+	payload
 });
 
 export const getAddressess = address => async () => {

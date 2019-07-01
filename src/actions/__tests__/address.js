@@ -14,11 +14,7 @@ describe('address', () => {
 		it('should be a valid action', () => {
 			expect(addressActions.setCurrentAddress(validAddressResponse[0])).toEqual({
 				type: CHANGE_CURRENT_ADDRESS,
-				payload: {
-					formattedAddress: 'R. Cuiabá - Alto da Mooca, São Paulo - SP, Brazil',
-					location: { lat: -23.5606203, lng: -46.5903842 },
-					placeId: 'ChIJn826YLJezpQRDhdmNWzKsdw'
-				}
+				payload: { lat: -23.5606203, lng: -46.5903842 }
 			});
 		});
 	});
