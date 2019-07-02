@@ -5,7 +5,7 @@ module.exports = {
 			'<rootDir>/__mocks__/file-mock.js',
 		'\\.(s?css)$': 'identity-obj-proxy'
 	},
-	setupFiles: ['./test-utils/enzyme-setup.js'],
+	setupFiles: ['./test-utils/enzyme-setup.js', './test-utils/react-apollo.js'],
 	coveragePathIgnorePatterns: ['src/types', 'test-utils', 'src/pages', 'src/constants', 'src/reducer/index.js'],
 	snapshotSerializers: ["enzyme-to-json/serializer"],
 	collectCoverage: true,
