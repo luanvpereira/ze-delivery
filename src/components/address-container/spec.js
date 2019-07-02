@@ -1,4 +1,9 @@
+jest.mock('react-apollo', () => ({
+	withApollo: Component => Component
+}));
+
 jest.mock('../../actions/address');
+
 jest.mock('../../lib/wait', () => jest.fn().mockImplementation(() => Promise.resolve(true)));
 
 jest.mock('next/router', () => ({
