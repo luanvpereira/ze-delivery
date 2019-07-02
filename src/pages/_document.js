@@ -15,6 +15,16 @@ class MyDocument extends Document {
 						rel="stylesheet"
 						href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
 					/>
+					<link
+						href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+						rel="stylesheet"
+					/>
+					<style jsx global>{`
+						body {
+							font-size: 10px;
+							font-family: 'Roboto', sans-serif;
+						}
+					`}</style>
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
 				<body>

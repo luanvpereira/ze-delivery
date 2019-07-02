@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header/> should render a <Header/> 1`] = `
+<Header>
+  <header
+    className="header"
+  >
+    <Container>
+      <div
+        className="container"
+      >
+        <h1
+          className="headerTitle"
+        >
+          <Link
+            href="/"
+          >
+            <a
+              className="headerLogo"
+              href="/"
+              onClick={[Function]}
+            >
+              Ze Delivery
+            </a>
+          </Link>
+        </h1>
+         
+      </div>
+    </Container>
+  </header>
+</Header>
+`;

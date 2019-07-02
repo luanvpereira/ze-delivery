@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { graphql, Query } from 'react-apollo';
 import gql from 'graphql-tag';
+
 import * as filterActions from '../../actions/filter';
 
 export const ALL_CATEGORIES_QUERY = gql`

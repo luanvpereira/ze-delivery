@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { ApolloProvider, compose } from 'react-apollo';
 
 import { initializeStore } from '../reducer';
+import Layout from '../components/layout';
 
 class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
@@ -25,7 +26,9 @@ class MyApp extends App {
 			<Container>
 				<ApolloProvider client={apolloClient}>
 					<Provider store={store}>
-						<Component {...pageProps} />
+						<Layout>
+							<Component {...pageProps} />
+						</Layout>
 					</Provider>
 				</ApolloProvider>
 			</Container>

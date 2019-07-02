@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout/> shoudl render a <Layout/> 1`] = `
+<Footer>
+  <footer
+    className="footer"
+  >
+    <Container>
+      <div
+        className="container"
+      >
+        <p
+          className="footerCopyright"
+        >
+          © 
+          2019
+           Zé Delivery - Todos os direitos reservados.
+        </p>
+        <p
+          className="footerLogo"
+        >
+          Ze Delivery
+        </p>
+        <ul
+          className="footerList"
+        >
+          <li>
+            <a
+              className="footerListItem"
+              href="https://zedelivery.zendesk.com/hc/pt-br"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Dúvidas?
+            </a>
+          </li>
+          <li>
+            <a
+              className="footerListItem"
+              href="/terms"
+            >
+              Termos de Condições e Política de 
+              <br />
+               Privacidade
+            </a>
+          </li>
+          <li>
+            <a
+              className="footerListItem"
+              href="/partner"
+            >
+              Seja nosso parceiro
+            </a>
+          </li>
+        </ul>
+         
+      </div>
+    </Container>
+  </footer>
+</Footer>
+`;
