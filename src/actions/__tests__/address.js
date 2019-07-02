@@ -10,15 +10,6 @@ import { GEOCODE_URL } from '../../constants';
 const mock = new MockAdapter(axios);
 
 describe('address', () => {
-	describe('#setCurrentAddress', () => {
-		it('should be a valid action', () => {
-			expect(addressActions.setCurrentAddress(validAddressResponse[0])).toEqual({
-				type: CHANGE_CURRENT_ADDRESS,
-				payload: { lat: -23.5606203, lng: -46.5903842 }
-			});
-		});
-	});
-
 	describe('#getAddressess', () => {
 		it('should get addresses', async () => {
 			mock.onGet(new RegExp(`^${GEOCODE_URL}`)).reply(200, {
