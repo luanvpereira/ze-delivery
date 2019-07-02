@@ -12,6 +12,7 @@ class MyApp extends App {
 		let pageProps = {};
 
 		if (Component.getInitialProps) {
+			console.log('ctx => ', ctx);
 			pageProps = await Component.getInitialProps(ctx);
 		}
 

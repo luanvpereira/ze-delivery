@@ -14,6 +14,12 @@ const nextApp = next({
 	distDir: srcDir
 });
 
+express.get('/products/:id', (req, res) => {
+	const mergedQuery = Object.assign({}, req.query, req.params);
+
+	return nextApp.render(req, res, '/products', mergedQuery);
+});
+
 const handleNextRequests = nextApp.getRequestHandler();
 
 express.get('*', (req, res) => {
