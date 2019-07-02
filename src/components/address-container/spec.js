@@ -1,7 +1,12 @@
 jest.mock('../../actions/address');
 jest.mock('../../lib/wait', () => jest.fn().mockImplementation(() => Promise.resolve(true)));
 
+jest.mock('next/router', () => ({
+	push: jest.fn().mockImplementation(() => Promise.resolve([]))
+}));
+
 import React from 'react';
+import Router from 'next/router';
 import { Provider } from 'react-redux';
 import { mount, shallow } from 'enzyme';
 
@@ -18,11 +23,28 @@ const defaultStoreValues = {
 	}
 };
 
+const pocMethodSearch = {
+	data: {
+		pocSearch: [
+			{
+				id: Math.floor(Math.random() * 10)
+			}
+		]
+	}
+};
+
+const clientPocMethodSearchSuccessResponse = {
+	client: {
+		query: jest.fn().mockImplementation(() => Promise.resolve(pocMethodSearch))
+	}
+};
+
 const getComponent = ({
-	store = defaultStoreValues
+	store = defaultStoreValues,
+	props = {}
 } = {}) => mount(
 	<Provider store={initializeStore(store)}>
-		<AddressContainer />
+		<AddressContainer {...props} />
 	</Provider>).find('AddressContainer');
 
 describe('<AddressContainer/>', () => {
@@ -69,19 +91,48 @@ describe('<AddressContainer/>', () => {
 		});
 	});
 
+	describe('#goToProducts', () => {
+		it('should get a first `method` and redirect to /products page', async () => {
+			const component = getComponent({
+				props: {
+					...clientPocMethodSearchSuccessResponse
+				}
+			});
+
+			const { id } = pocMethodSearch.data.pocSearch[0];
+
+			await component.instance().goToProducts();
+
+			expect(Router.push).toHaveBeenCalledWith(`/products/${id}`);
+		});
+	});
+
 	describe('#handleClick', () => {
-		it('should select an address by index', () => {
+		it('should call #goToProducts with lat e long', async () => {
+			const goToProductsSpy = jest
+				.spyOn(PureAddressContainer.prototype, 'goToProducts')
+				.mockImplementation(() => Promise.resolve([]));
+
 			const component = getComponent();
 
 			const index = 1;
+
+
+			const selectedLocation = validAddressReponse[index];
+
+			const {
+				geometry: {
+					location: { lat, lng }
+				}
+			} = selectedLocation;
 
 			component.setState({
 				addressess: validAddressReponse
 			});
 
-			component.instance().handleClick(index)();
-			expect(addressActions.setCurrentAddress)
-				.toHaveBeenCalledWith(validAddressReponse[index]);
+			await component.instance().handleClick(index)();
+
+			expect(goToProductsSpy).toHaveBeenCalledWith(String(lat), String(lng));
 		});
 	});
 

@@ -2,7 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import Router from 'next/router'
+import Router from 'next/router';
+import { withApollo } from 'react-apollo';
+import gql from 'graphql-tag';
+
+const pocSearchMethod = gql`
+	query pocSearchMethod(
+		$now: DateTime!,
+		$algorithm: String!,
+		$lat: String!,
+		$long: String!
+	) {
+		pocSearch(now: $now, algorithm: $algorithm, lat: $lat, long: $long) {
+			id,
+			status
+		}
+	}
+`;
+
 
 import * as addressActions from '../../actions/address';
 import wait from '../../lib/wait';
@@ -44,10 +61,26 @@ class AddressContainer extends React.PureComponent {
 		}
 	}
 
+	async goToProducts(lat, long) {
+		const { data: { pocSearch: [firstMethod] } } = await this.props.client.query({
+			query: pocSearchMethod,
+			variables: {
+				algorithm: 'NEAREST',
+				lat,
+				long,
+				now: new Date()
+			}
+		});
+
+		Router.push(`/products/${firstMethod.id}`);
+	}
+
 	handleClick(index) {
-		return () => {
-			this.props.setCurrentAddress(this.state.addressess[index]);
-			Router.push('/products');
+		return async () => {
+			const currentAddress = this.state.addressess[index];
+			const { lat, lng: long } = currentAddress.geometry.location;
+
+			await this.goToProducts(String(lat), String(long));
 		};
 	}
 
@@ -86,5 +119,6 @@ export default compose(
 	connect(
 		undefined,
 		mapDispatchToProps
-	)
+	),
+	withApollo
 )(AddressContainer);
