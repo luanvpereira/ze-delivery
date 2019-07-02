@@ -27,7 +27,10 @@ const MIN_LENGTH = 3;
 
 class AddressContainer extends React.PureComponent {
 	static propTypes = {
-		getAddressess: PropTypes.func.isRequired
+		getAddressess: PropTypes.func.isRequired,
+		client: PropTypes.shape({
+			query: PropTypes.func
+		})
 	};
 
 	constructor(props) {
@@ -61,7 +64,7 @@ class AddressContainer extends React.PureComponent {
 	}
 
 	async goToProducts(lat, long) {
-		const { data: { pocSearch: [firstMethod] } } = await this.props.client.query({
+		const { data: { pocSearch: [ firstMethod ] } } = await this.props.client.query({
 			query: pocSearchMethod,
 			variables: {
 				algorithm: 'NEAREST',

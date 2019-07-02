@@ -4,7 +4,6 @@ import axios from 'axios';
 import * as addressActions from '../address';
 import validAddressResponse from '../../../test-utils/mocked-store/address';
 
-import { CHANGE_CURRENT_ADDRESS } from '../../types';
 import { GEOCODE_URL } from '../../constants';
 
 const mock = new MockAdapter(axios);
