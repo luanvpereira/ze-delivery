@@ -2,5 +2,5 @@
 
 ## Como rodar o projeto?
 
-- **npm start**: para rodar em production mode
-- **npm run dev**: para rodar em development mode
+- **npm ci** ou **npm install**: para instalar as dependências
+- **npm start**: para rodar
