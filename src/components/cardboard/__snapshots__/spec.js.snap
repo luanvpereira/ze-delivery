@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Cardboard/> should render a <Cardboard/> 1`] = `
+<Cardboard
+  className="customClass"
+>
+  <div
+    className="cardboard customClass"
+  >
+    <p>
+      Corpou
+    </p>
+  </div>
+</Cardboard>
+`;
