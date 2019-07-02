@@ -6,6 +6,16 @@ import Router from 'next/router';
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import * as addressActions from '../../actions/address';
+import wait from '../../lib/wait';
+
+import FormField from '../form-field';
+import Container from '../container';
+
+import style from './style.scss';
+
+const MIN_LENGTH = 3;
+
 const pocSearchMethod = gql`
 	query pocSearchMethod(
 		$now: DateTime!,
@@ -20,11 +30,6 @@ const pocSearchMethod = gql`
 	}
 `;
 
-
-import * as addressActions from '../../actions/address';
-import wait from '../../lib/wait';
-const MIN_LENGTH = 3;
-
 class AddressContainer extends React.PureComponent {
 	static propTypes = {
 		getAddressess: PropTypes.func.isRequired,
@@ -37,7 +42,8 @@ class AddressContainer extends React.PureComponent {
 		super(props);
 
 		this.state = {
-			addressess: []
+			addressess: [],
+			isLoading: false
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -48,13 +54,17 @@ class AddressContainer extends React.PureComponent {
 
 	async handleChange({ target }) {
 		if (target.value.length >= MIN_LENGTH && !this.isTyping) {
+			this.setState({
+				isLoading: true
+			});
 			await wait('TYPING', 600);
 			this.isTyping = true;
 
 			const addressess = await this.props.getAddressess(target.value);
 
 			this.setState({
-				addressess
+				addressess,
+				isLoading: false
 			});
 
 			this.isTyping = false;
@@ -64,7 +74,7 @@ class AddressContainer extends React.PureComponent {
 	}
 
 	async goToProducts(lat, long) {
-		const { data: { pocSearch: [ firstMethod ] } } = await this.props.client.query({
+		const { data: { pocSearch: [firstMethod] } } = await this.props.client.query({
 			query: pocSearchMethod,
 			variables: {
 				algorithm: 'NEAREST',
@@ -74,7 +84,10 @@ class AddressContainer extends React.PureComponent {
 			}
 		});
 
-		Router.push(`/products/${firstMethod.id}`);
+		/* istanbul ignore else */
+		if (firstMethod) {
+			Router.push(`/products/${firstMethod.id}`);
+		}
 	}
 
 	handleClick(index) {
@@ -88,27 +101,41 @@ class AddressContainer extends React.PureComponent {
 
 	resetAddressess() {
 		this.setState({
-			addressess: []
+			addressess: [],
+			isLoading: false
 		});
 		this.isTyping = false;
 	}
 
 	render() {
-		const { addressess } = this.state;
+		const { addressess, isLoading } = this.state;
 
 		return (
-			<>
-				<input type="text" onChange={this.handleChange} />
-				<ul>
-					{addressess.map(
-						({ formatted_address: formattedAddress, place_id: placeId }, index) => (
-							<li key={placeId} onClick={this.handleClick(index)}>
-								{formattedAddress}
-							</li>
-						)
-					)}
-				</ul>
-			</>
+			<Container>
+				<div className={style.main}>
+					<h2 className={style.mainTitle}>
+						Bebida gelada, rápida a <br />
+						preço baixo
+					</h2>
+
+					<FormField
+						label="Endereço de entrega."
+						onChange={this.handleChange}
+						className={style.mainSearch}
+						isLoading={isLoading}
+					/>
+
+					<ul>
+						{addressess.map(
+							({ formatted_address: formattedAddress, place_id: placeId }, index) => (
+								<li key={placeId} onClick={this.handleClick(index)}>
+									{formattedAddress}
+								</li>
+							)
+						)}
+					</ul>
+				</div>
+			</Container>
 		);
 	}
 }

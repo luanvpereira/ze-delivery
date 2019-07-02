@@ -1,0 +1,42 @@
+.formField {
+	border: 1px solid #cccccc;
+	box-sizing: border-box;
+	border-radius: 1px;
+	width: 100%;
+
+	box-sizing: border-box;
+
+	&Input {
+		width: 100%;
+		font-size: 1rem;
+		color: #666;
+		border-color: transparent;
+		box-sizing: border-box;
+		outline: none;
+		padding: 1rem;
+	}
+
+	&Label {
+		font-size: 0.8rem;
+		margin: 0 0 0.5rem;
+	}
+
+	&IsLoading {
+		position: relative;
+		width: 86%;
+
+		&:after {
+			content: '';
+			display: block;
+			width: 2rem;
+			height: 2rem;
+			background-image: url(../../lib/assets/pulse.svg);
+			background-repeat: no-repeat;
+			background-size: 2rem auto;
+
+			position: absolute;
+			right: 0.6rem;
+			bottom: 0.7rem;
+		}
+	}
+}

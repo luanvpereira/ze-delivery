@@ -24,6 +24,11 @@ class MyDocument extends Document {
 							font-size: 10px;
 							font-family: 'Roboto', sans-serif;
 						}
+
+						html, body, #__next {
+							width: 100%;
+							height: 100%;
+						}
 					`}</style>
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
