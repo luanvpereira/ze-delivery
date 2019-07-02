@@ -11,17 +11,12 @@ import { Provider } from 'react-redux';
 import { mount, shallow } from 'enzyme';
 
 import AddressContainer, { PureAddressContainer, mapDispatchToProps } from '../address-container';
-import * as addressActions from '../../actions/address';
 import validAddressReponse from '../../../test-utils/mocked-store/address';
 import wait from '../../lib/wait';
 
 import { initializeStore } from '../../reducer';
 
-const defaultStoreValues = {
-	address: {
-		currentAddress: null
-	}
-};
+const defaultStoreValues = {};
 
 const pocMethodSearch = {
 	data: {
