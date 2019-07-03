@@ -7,6 +7,12 @@ import gql from 'graphql-tag';
 
 import * as filterActions from '../../actions/filter';
 
+import style from './style.scss';
+
+import Container from '../container';
+import FormField from '../form-field';
+import Cardboard from '../cardboard';
+
 export const ALL_CATEGORIES_QUERY = gql`
 	query allCategoriesSearch {
   		allCategory{
@@ -66,38 +72,53 @@ class ProductsContainer extends React.PureComponent {
 		} = this.props;
 
 		return (
-			<div>
-				<select onChange={this.handleCategoryChange}>
-					<option value="0">Todos</option>
-					{allCategory.map(({ title, id: optionId }) => (
-						<option key={optionId} value={optionId}>{title}</option>
-					))}
-				</select>
+			<Container>
+				<div className={style.filter}>
+					<FormField onChange={this.handleCategoryChange} type="select">
+						<option value="0">Todos</option>
+						{allCategory.map(({ title, id: optionId }) => (
+							<option key={optionId} value={optionId}>{title}</option>
+						))}
+					</FormField>
 
-				<input
-					type="text"
-					defaultValue={filter.search}
-					onChange={this.handleSearchChange}
-				/>
+					<FormField
+						className={style.filterSearch}
+						type="text"
+						defaultValue={filter.search}
+						search={true}
+						onChange={this.handleSearchChange}
+					/>
+				</div>
 
 				<Query query={POC_CATEGORY_SEARCH_QUERY} variables={filter}>
-					{({ data: { poc: { products = [] } = {} } }) => (
-						<ul>
-							{
-								products
-									.map(({ productVariants: [ detail ] }) => detail)
-									.map(({ title, imageUrl, price }, index) => (
-										<li key={index}>
-											<strong>{title}</strong> <br />
-											<img src={imageUrl} /><br />
-											<strong>{price}</strong><br />
-										</li>
-									))
-							}
-						</ul>
-					)}
+					{({ data: { poc: { products = [] } = {} } }) =>
+						<>
+							{products.length > 0 ?
+								(<ul className={style.products}>
+									{
+										products
+											.map(({ productVariants: [detail] }) => detail)
+											.map(({ title, imageUrl, price }, index) => (
+												<li key={index} className={style.productsItem}>
+													<Cardboard>
+														<h3 className={style.productsTitle}>
+															{title}
+														</h3>
+														<img
+															className={style.productsImage}
+															src={imageUrl}
+														/>
+														<p className={style.productsPrice}>R$ {String(price).replace('.', ',')}</p>
+													</Cardboard>
+												</li>
+											))
+									}
+								</ul>) :
+								<p className={style.notFound}>Nada foi encontrado.</p>}
+						</>
+					}
 				</Query>
-			</div>
+			</Container>
 		);
 	}
 }
