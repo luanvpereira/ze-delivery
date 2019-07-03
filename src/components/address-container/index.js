@@ -125,10 +125,13 @@ class AddressContainer extends React.PureComponent {
 						isLoading={isLoading}
 					/>
 
-					<ul>
+					<ul className={style.addressList}>
 						{addressess.map(
 							({ formatted_address: formattedAddress, place_id: placeId }, index) => (
-								<li key={placeId} onClick={this.handleClick(index)}>
+								<li
+									key={placeId}
+									onClick={this.handleClick(index)}
+									className={style.addressListItem}>
 									{formattedAddress}
 								</li>
 							)
