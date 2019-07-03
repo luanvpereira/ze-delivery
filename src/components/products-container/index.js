@@ -97,7 +97,7 @@ class ProductsContainer extends React.PureComponent {
 								(<ul className={style.products}>
 									{
 										products
-											.map(({ productVariants: [detail] }) => detail)
+											.map(({ productVariants: [ detail ] }) => detail)
 											.map(({ title, imageUrl, price }, index) => (
 												<li key={index} className={style.productsItem}>
 													<Cardboard>
