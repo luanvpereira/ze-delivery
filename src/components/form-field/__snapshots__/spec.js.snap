@@ -33,6 +33,7 @@ exports[`<FormField/> should render a <FormField type="text"> 1`] = `
 <FormField
   isLoading={true}
   label="Nome"
+  type="text"
 >
   <div
     className="formFieldIsLoading"
@@ -47,6 +48,7 @@ exports[`<FormField/> should render a <FormField type="text"> 1`] = `
     >
       <input
         className="formFieldInput"
+        type="text"
       />
     </div>
   </div>

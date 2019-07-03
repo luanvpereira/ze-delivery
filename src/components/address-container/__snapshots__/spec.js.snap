@@ -17,6 +17,7 @@ exports[`<AddressContainer/> #render should render an <AddressContainer/> 1`] = 
       isLoading={false}
       label="Endereço de entrega."
       onChange={[Function]}
+      type="text"
     />
     <ul
       className="addressList"

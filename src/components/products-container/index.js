@@ -92,7 +92,6 @@ class ProductsContainer extends React.PureComponent {
 
 					<FormField
 						className={style.filterSearch}
-						type="text"
 						defaultValue={filter.search}
 						search={true}
 						onKeyUp={this.handleSearchChange}

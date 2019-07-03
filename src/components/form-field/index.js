@@ -40,7 +40,7 @@ FormField.propTypes = {
 	type: PropTypes.string
 };
 
-FormField.propTypes = {
+FormField.defaultProps = {
 	type: 'text'
 };
 
