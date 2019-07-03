@@ -11,3 +11,32 @@
 		width: 70%;
 	}
 }
+
+.addressList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 70%;
+
+	&Item {
+		font-size: 0.8rem;
+		border: 1px solid #ccc;
+		padding: 0.8rem 1rem;
+		border-bottom: 0;
+		color: #666;
+		cursor: pointer;
+
+		&:hover {
+			color: #000;
+		}
+
+		&:first-child {
+			border-top: 0;
+		}
+
+		&:last-child {
+			border-bottom: 1px solid #ccc;
+		}
+
+	}
+}
