@@ -1,12 +1,18 @@
 jest.mock('../../actions/filter');
+jest.mock('../../actions/loader');
 
 import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { MockedProvider } from 'react-apollo/test-utils';
+
 import wait from '../../lib/wait';
 import { initializeStore } from '../../reducer';
+
 import * as filterActions from '../../actions/filter';
+import * as loaderActions from '../../actions/loader';
+
+import { ENTER_KEY } from '../../constants';
 
 import ProductsContainer, {
 	ALL_CATEGORIES_QUERY,
@@ -139,18 +145,27 @@ describe('<ProductContainer/>', () => {
 	});
 
 	describe('#handleSearchChange', () => {
-		it('should call #changeFilterText with value passed event parameter', () => {
-			const wrapper = getWrapper();
+		const event = {
+			target: {
+				value: 'Breja'
+			},
+			keyCode: ENTER_KEY
+		};
 
-			const event = {
-				target: {
-					value: 'Breja'
-				}
-			};
+		it('should call #changeFilterText with value from input when enter key is pressed', () => {
+			const wrapper = getWrapper();
 
 			wrapper.find('ProductsContainer').instance().handleSearchChange(event);
 
 			expect(filterActions.changeFilterText).toHaveBeenCalledWith(event.target.value);
+		});
+
+		it('should call #showLoader when enter key is pressed', () => {
+			const wrapper = getWrapper();
+
+			wrapper.find('ProductsContainer').instance().handleSearchChange(event);
+
+			expect(loaderActions.showLoader).toHaveBeenCalled();
 		});
 	});
 
@@ -163,6 +178,16 @@ describe('<ProductContainer/>', () => {
 			wrapper.update();
 
 			expect(wrapper.find('ProductsContainer')).toMatchSnapshot();
+		});
+
+		it('should call #hideLoader when render graphql result', async () => {
+			const wrapper = getWrapper();
+
+			await wait(0);
+
+			wrapper.update();
+
+			expect(loaderActions.hideLoader).toHaveBeenCalled();
 		});
 
 		it('should render a <ProductsContainer/> without graphql states', () => {

@@ -7,6 +7,7 @@ import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import * as addressActions from '../../actions/address';
+import * as loaderActions from '../../actions/loader';
 import wait from '../../lib/wait';
 
 import FormField from '../form-field';
@@ -35,7 +36,9 @@ class AddressContainer extends React.PureComponent {
 		getAddressess: PropTypes.func.isRequired,
 		client: PropTypes.shape({
 			query: PropTypes.func
-		})
+		}),
+		showLoader: PropTypes.func,
+		hideLoader: PropTypes.func
 	};
 
 	constructor(props) {
@@ -74,7 +77,9 @@ class AddressContainer extends React.PureComponent {
 	}
 
 	async goToProducts(lat, long) {
-		const { data: { pocSearch: [ firstMethod ] } } = await this.props.client.query({
+		this.props.showLoader();
+
+		const { data: { pocSearch: [firstMethod] } } = await this.props.client.query({
 			query: pocSearchMethod,
 			variables: {
 				algorithm: 'NEAREST',
@@ -86,7 +91,9 @@ class AddressContainer extends React.PureComponent {
 
 		/* istanbul ignore else */
 		if (firstMethod) {
-			Router.push(`/products/${firstMethod.id}`);
+			await Router.push(`/products/${firstMethod.id}`);
+		} else {
+			this.props.hideLoader();
 		}
 	}
 
@@ -145,7 +152,11 @@ class AddressContainer extends React.PureComponent {
 
 export { AddressContainer as PureAddressContainer };
 
-export const mapDispatchToProps = dispatch => bindActionCreators({ ...addressActions }, dispatch);
+export const mapDispatchToProps = dispatch =>
+	bindActionCreators({
+		...addressActions,
+		...loaderActions
+	}, dispatch);
 
 export default compose(
 	connect(

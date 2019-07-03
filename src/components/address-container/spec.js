@@ -10,6 +10,8 @@ jest.mock('next/router', () => ({
 	push: jest.fn().mockImplementation(() => Promise.resolve([]))
 }));
 
+jest.mock('../../actions/loader');
+
 import React from 'react';
 import Router from 'next/router';
 import { Provider } from 'react-redux';
@@ -18,6 +20,8 @@ import { mount, shallow } from 'enzyme';
 import AddressContainer, { PureAddressContainer, mapDispatchToProps } from '../address-container';
 import validAddressReponse from '../../../test-utils/mocked-store/address';
 import wait from '../../lib/wait';
+
+import * as loaderActions from '../../actions/loader';
 
 import { initializeStore } from '../../reducer';
 
@@ -33,9 +37,22 @@ const pocMethodSearch = {
 	}
 };
 
+const invalidPocMethodSearch = {
+	data: {
+		pocSearch: []
+	}
+};
+
 const clientPocMethodSearchSuccessResponse = {
 	client: {
 		query: jest.fn().mockImplementation(() => Promise.resolve(pocMethodSearch))
+	}
+};
+
+
+const clientPocMethodSearchErrorResponse = {
+	client: {
+		query: jest.fn().mockImplementation(() => Promise.resolve(invalidPocMethodSearch))
 	}
 };
 
@@ -104,6 +121,30 @@ describe('<AddressContainer/>', () => {
 			await component.instance().goToProducts();
 
 			expect(Router.push).toHaveBeenCalledWith(`/products/${id}`);
+		});
+
+		it('shoud call #showLoader when consult pocSearchMethod', async () => {
+			const component = getComponent({
+				props: {
+					...clientPocMethodSearchSuccessResponse
+				}
+			});
+
+			await component.instance().goToProducts();
+
+			expect(loaderActions.showLoader).toHaveBeenCalled();
+		});
+
+		it('shoud call #hideLoader when pocSearchMethod does not return anything', async () => {
+			const component = getComponent({
+				props: {
+					...clientPocMethodSearchErrorResponse
+				}
+			});
+
+			await component.instance().goToProducts();
+
+			expect(loaderActions.hideLoader).toHaveBeenCalled();
 		});
 	});
 

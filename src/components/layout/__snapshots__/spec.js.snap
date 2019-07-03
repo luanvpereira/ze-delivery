@@ -1,98 +1,120 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Layout/> should render a <Layout/> 1`] = `
-<Layout>
-  <div
-    className="layout"
-  >
-    <Header>
-      <header
-        className="header"
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(Layout)>
+    <Layout
+      dispatch={[Function]}
+      loader={true}
+    >
+      <div
+        className="layout"
       >
-        <Container>
-          <div
-            className="container"
+        <Header>
+          <header
+            className="header"
           >
-            <h1
-              className="headerTitle"
-            >
-              <Link
-                href="/"
+            <Container>
+              <div
+                className="container"
               >
-                <a
-                  className="headerLogo"
-                  href="/"
-                  onClick={[Function]}
+                <h1
+                  className="headerTitle"
+                >
+                  <Link
+                    href="/"
+                  >
+                    <a
+                      className="headerLogo"
+                      href="/"
+                      onClick={[Function]}
+                    >
+                      Ze Delivery
+                    </a>
+                  </Link>
+                </h1>
+                 
+              </div>
+            </Container>
+          </header>
+        </Header>
+        <p>
+          Corpo
+        </p>
+        <Footer>
+          <footer
+            className="footer"
+          >
+            <Container>
+              <div
+                className="container"
+              >
+                <p
+                  className="footerCopyright"
+                >
+                  © 
+                  2019
+                   Zé Delivery - Todos os direitos reservados.
+                </p>
+                <p
+                  className="footerLogo"
                 >
                   Ze Delivery
-                </a>
-              </Link>
-            </h1>
-             
-          </div>
-        </Container>
-      </header>
-    </Header>
-    <p>
-      Corpo
-    </p>
-    <Footer>
-      <footer
-        className="footer"
-      >
-        <Container>
+                </p>
+                <ul
+                  className="footerList"
+                >
+                  <li>
+                    <a
+                      className="footerListItem"
+                      href="https://zedelivery.zendesk.com/hc/pt-br"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Dúvidas?
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="footerListItem"
+                      href="/terms"
+                    >
+                      Termos de Condições e Política de 
+                      <br />
+                       Privacidade
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="footerListItem"
+                      href="/partner"
+                    >
+                      Seja nosso parceiro
+                    </a>
+                  </li>
+                </ul>
+                 
+              </div>
+            </Container>
+          </footer>
+        </Footer>
+        <Loader>
           <div
-            className="container"
-          >
-            <p
-              className="footerCopyright"
-            >
-              © 
-              2019
-               Zé Delivery - Todos os direitos reservados.
-            </p>
-            <p
-              className="footerLogo"
-            >
-              Ze Delivery
-            </p>
-            <ul
-              className="footerList"
-            >
-              <li>
-                <a
-                  className="footerListItem"
-                  href="https://zedelivery.zendesk.com/hc/pt-br"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Dúvidas?
-                </a>
-              </li>
-              <li>
-                <a
-                  className="footerListItem"
-                  href="/terms"
-                >
-                  Termos de Condições e Política de 
-                  <br />
-                   Privacidade
-                </a>
-              </li>
-              <li>
-                <a
-                  className="footerListItem"
-                  href="/partner"
-                >
-                  Seja nosso parceiro
-                </a>
-              </li>
-            </ul>
-             
-          </div>
-        </Container>
-      </footer>
-    </Footer>
-  </div>
-</Layout>
+            className="loader"
+          />
+        </Loader>
+      </div>
+    </Layout>
+  </Connect(Layout)>
+</Provider>
 `;
