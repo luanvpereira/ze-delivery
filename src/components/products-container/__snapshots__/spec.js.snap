@@ -43,7 +43,9 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> 1`] = 
       "search": "",
     }
   }
+  hideLoader={[Function]}
   setCurrentMethod={[Function]}
+  showLoader={[Function]}
 >
   <Container>
     <div
@@ -100,7 +102,7 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> 1`] = 
         <FormField
           className="filterSearch"
           defaultValue=""
-          onChange={[Function]}
+          onKeyUp={[Function]}
           search={true}
           type="text"
         >
@@ -113,7 +115,7 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> 1`] = 
               <input
                 className="formFieldInput"
                 defaultValue=""
-                onChange={[Function]}
+                onKeyUp={[Function]}
                 type="text"
               />
             </div>
@@ -121,6 +123,7 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> 1`] = 
         </FormField>
       </div>
       <Query
+        onCompleted={[Function]}
         query={
           Object {
             "definitions": Array [
@@ -495,7 +498,9 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> withou
       "search": "",
     }
   }
+  hideLoader={[Function]}
   setCurrentMethod={[Function]}
+  showLoader={[Function]}
 >
   <Container>
     <div
@@ -528,7 +533,7 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> withou
         <FormField
           className="filterSearch"
           defaultValue=""
-          onChange={[Function]}
+          onKeyUp={[Function]}
           search={true}
           type="text"
         >
@@ -541,7 +546,7 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> withou
               <input
                 className="formFieldInput"
                 defaultValue=""
-                onChange={[Function]}
+                onKeyUp={[Function]}
                 type="text"
               />
             </div>
@@ -549,6 +554,7 @@ exports[`<ProductContainer/> #render should render a <ProductsContainer/> withou
         </FormField>
       </div>
       <Query
+        onCompleted={[Function]}
         query={
           Object {
             "definitions": Array [

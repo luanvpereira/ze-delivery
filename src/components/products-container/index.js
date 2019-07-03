@@ -5,8 +5,9 @@ import { bindActionCreators, compose } from 'redux';
 import { graphql, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import { ENTER_KEY } from '../../constants';
 import * as filterActions from '../../actions/filter';
-
+import * as loaderActions from '../../actions/loader';
 import style from './style.scss';
 
 import Container from '../container';
@@ -46,7 +47,9 @@ class ProductsContainer extends React.PureComponent {
 			search: PropTypes.string
 		}),
 		changeCategory: PropTypes.func,
-		changeFilterText: PropTypes.func
+		changeFilterText: PropTypes.func,
+		showLoader: PropTypes.func,
+		hideLoader: PropTypes.func
 	}
 
 	constructor(props) {
@@ -57,11 +60,17 @@ class ProductsContainer extends React.PureComponent {
 	}
 
 	handleCategoryChange(e) {
+		this.props.showLoader();
 		this.props.changeCategory(e.target.value);
+		this.props.changeFilterText('');
 	}
 
 	handleSearchChange(e) {
-		this.props.changeFilterText(e.target.value);
+		/* istanbul ignore else */
+		if (e.keyCode === ENTER_KEY) {
+			this.props.showLoader();
+			this.props.changeFilterText(e.target.value);
+		}
 	}
 
 	render() {
@@ -86,11 +95,14 @@ class ProductsContainer extends React.PureComponent {
 						type="text"
 						defaultValue={filter.search}
 						search={true}
-						onChange={this.handleSearchChange}
+						onKeyUp={this.handleSearchChange}
 					/>
 				</div>
 
-				<Query query={POC_CATEGORY_SEARCH_QUERY} variables={filter}>
+				<Query
+					query={POC_CATEGORY_SEARCH_QUERY}
+					variables={filter}
+					onCompleted={this.props.hideLoader}>
 					{({ data: { poc: { products = [] } = {} } }) =>
 						<>
 							{products.length > 0 ?
@@ -131,7 +143,11 @@ export const mapStateToProps = ({
 	filter
 });
 
-export const mapDispatchToProps = dispatch => bindActionCreators({ ...filterActions }, dispatch);
+export const mapDispatchToProps = dispatch =>
+	bindActionCreators({
+		...filterActions,
+		...loaderActions
+	}, dispatch);
 
 export default compose(
 	connect(mapStateToProps, mapDispatchToProps),

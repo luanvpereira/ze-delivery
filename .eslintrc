@@ -19,7 +19,8 @@
 		"describe": true,
 		"it": true,
 		"expect": true,
-		"jest": true
+		"jest": true,
+		"assertActions": true
 	},
 	"rules": {
 		"arrow-parens": [
