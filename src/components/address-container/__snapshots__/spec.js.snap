@@ -18,14 +18,18 @@ exports[`<AddressContainer/> #render should render an <AddressContainer/> 1`] = 
       label="Endereço de entrega."
       onChange={[Function]}
     />
-    <ul>
+    <ul
+      className="addressList"
+    >
       <li
+        className="addressListItem"
         key="ChIJn826YLJezpQRDhdmNWzKsdw"
         onClick={[Function]}
       >
         R. Cuiabá - Alto da Mooca, São Paulo - SP, Brazil
       </li>
       <li
+        className="addressListItem"
         key="ChIJF9lBHVcFbJIRt9jT0OF5WWs"
         onClick={[Function]}
       >

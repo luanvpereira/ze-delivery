@@ -1,0 +1,77 @@
+.filter {
+	display: flex;
+	justify-content: space-between;
+	margin: 2rem 0 3rem;
+
+	&Search {
+		width: 300px;
+	}
+}
+
+.products {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	box-sizing: border-box;
+
+	@media screen and (min-width: 680px) {
+		justify-content: flex-start;
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+
+	&Item {
+		width: 100%;
+		max-width: 300px;
+		margin-bottom: 2rem;
+
+		@media screen and (min-width: 680px) {
+			width: 50%;
+			max-width: inherit;
+			box-sizing: border-box;
+			padding: 0 20px;
+		}
+
+		@media screen and (min-width: 920px) {
+			width: calc(100%/3);
+		}
+
+		> div {
+			height: 340px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
+	&Title {
+		margin: 1rem;
+		font-size: 1rem;
+		font-weight: 300;
+	}
+
+	&Price {
+		margin: 0;
+		padding: 1rem;
+		font-size: 1rem;
+	}
+
+	&Image {
+		display: inline-block;
+		max-width: 80%;
+	}
+}
+
+.notFound {
+	font-size: 1rem;
+	text-align: center;
+	height: 20rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

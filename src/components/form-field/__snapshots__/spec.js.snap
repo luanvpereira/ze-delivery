@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormField/> should render a <FormField type="select"> 1`] = `
+<FormField
+  label="opções"
+  type="select"
+>
+  <div>
+    <p
+      className="formFieldLabel"
+    >
+      opções
+    </p>
+    <div
+      className="formField"
+    >
+      <select
+        className="formFieldSelect"
+      >
+        <option>
+          Option 1
+        </option>
+        <option>
+          Option 2
+        </option>
+      </select>
+    </div>
+  </div>
+</FormField>
+`;
+
+exports[`<FormField/> should render a <FormField type="text"> 1`] = `
+<FormField
+  isLoading={true}
+  label="Nome"
+>
+  <div
+    className="formFieldIsLoading"
+  >
+    <p
+      className="formFieldLabel"
+    >
+      Nome
+    </p>
+    <div
+      className="formField"
+    >
+      <input
+        className="formFieldInput"
+      />
+    </div>
+  </div>
+</FormField>
+`;
