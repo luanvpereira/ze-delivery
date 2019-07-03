@@ -79,7 +79,7 @@ class AddressContainer extends React.PureComponent {
 	async goToProducts(lat, long) {
 		this.props.showLoader();
 
-		const { data: { pocSearch: [firstMethod] } } = await this.props.client.query({
+		const { data: { pocSearch: [ firstMethod ] } } = await this.props.client.query({
 			query: pocSearchMethod,
 			variables: {
 				algorithm: 'NEAREST',
